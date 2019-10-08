@@ -1,12 +1,7 @@
-
-
-
 class EventsManager {
     constructor() {
         this.obtenerDataInicial()
     }
-
-
     obtenerDataInicial() {
         let url = '../server/getEvents.php'
         $.ajax({
@@ -38,7 +33,7 @@ class EventsManager {
         		center: 'title',
         		right: 'month,agendaWeek,basicDay'
         	},
-        	defaultDate: '2016-11-01',
+        	defaultDate: '2019-10-01',
         	navLinks: true,
         	editable: true,
         	eventLimit: true,
@@ -196,17 +191,15 @@ class EventsManager {
 
 }
 
-
 $(function(){
   initForm();
+
   var e = new EventsManager();
   $('form').submit(function(event){
     event.preventDefault()
     e.anadirEvento()
   })
 });
-
-
 
 function initForm(){
   $('#start_date, #titulo, #end_date').val('');

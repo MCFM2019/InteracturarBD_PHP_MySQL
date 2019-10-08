@@ -5,7 +5,7 @@
   $response['conexion']=$con->initConexion('agenda');
 
   if($response['conexion']=='OK'){
-    $consulta=$con->consultar(['usuarios'],['email','password'],
+    $consulta=$con->consultar(['usuarios'],['email','password','id'],
                     'where email="'.$_POST['username'].'"');
     if($consulta->num_rows!=0){
         $fila=$consulta->fetch_assoc();
@@ -13,7 +13,7 @@
         if (password_verify($_POST['password'],$hash )) {
           $response['msg'] = 'OK';
           session_start();
-          $_SESSION['username']=$fila['email'];
+          $_SESSION['username']=$fila['id'];
         }
         else{
           $response['msg'] = 'Contraseña incorrecta';
