@@ -6,11 +6,17 @@
 
   if($response['conexion']=='OK'){
     session_start();
-    $consulta=$con->consultar(['eventos'],['id','titulo','fecInicio'],
+    $consulta=$con->consultar(['eventos'],['id','titulo as title','fecInicio as start','fecFin as end'],
                     'where idUser="'.$_SESSION['username'].'"');
     if($consulta->num_rows!=0){
-      $fila=$consulta->fetch_assoc();
-      $response['eventos']=$fila;
+      $i=0;
+      while ($fila = $consulta->fetch_assoc()) {
+        $response['eventos'][$i]['id']=$fila['id'];
+        $response['eventos'][$i]['title']=$fila['title'];
+        $response['eventos'][$i]['start']=$fila['start'];
+        $response['eventos'][$i]['end']=$fila['end'];
+        $i++;
+      }
       $response['msg'] = 'OK';
     }
     else{

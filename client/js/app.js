@@ -104,11 +104,8 @@ class EventsManager {
                 end: $('#end_date').val()+" "+$('#end_hour').val()
               })
             }
-
-
-
-
-          }else {
+          }
+          else {
             alert(data.msg)
           }
         },
